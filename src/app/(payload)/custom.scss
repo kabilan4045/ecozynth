@@ -1,0 +1,203 @@
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ==========================================================================
+   Ecozynth admin theme (light, Medusa-inspired)
+   Payload's own styles live in `@layer payload-default`, so these unlayered
+   rules win without !important. Brand colours are defined once, here.
+   ========================================================================== */
+
+:root {
+  /* Brand tokens (match the Tailwind theme in CLAUDE.md) */
+  --ecz-green: #7ac143;
+  --ecz-green-dark: #3e8e3e;
+  --ecz-green-tint: #eef7e6;
+  --ecz-on-green: #ffffff;
+  --ecz-heading: #1f2933;
+  --ecz-text: #1f2933;
+  --ecz-text-muted: #5f6773;
+  --ecz-link: #3e8e3e;
+
+  /* Surfaces */
+  --ecz-surface: #ffffff;
+  --ecz-surface-muted: #f8f9fa;
+  --ecz-border: #e5e7eb;
+  --ecz-shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --ecz-shadow-md: 0 1px 3px rgba(16, 24, 40, 0.08), 0 1px 2px rgba(16, 24, 40, 0.04);
+
+  /* Status */
+  --ecz-warning: #b45309;
+  --ecz-warning-tint: #fef3c7;
+  --ecz-danger: #b42318;
+  --ecz-danger-tint: #fee4e2;
+
+  /* Payload radius tokens: rounded inputs, buttons and cards */
+  --style-radius-s: 8px;
+  --style-radius-m: 10px;
+  --style-radius-l: 14px;
+}
+
+html[data-theme='light'] {
+  --theme-bg: var(--ecz-surface);
+  --theme-text: var(--ecz-text);
+  --theme-border-color: var(--ecz-border);
+  --theme-input-bg: var(--ecz-surface);
+}
+
+/* ---------- Buttons ---------- */
+
+.btn--style-primary {
+  --bg-color: var(--ecz-green);
+  --color: var(--ecz-on-green);
+  --hover-bg: var(--ecz-green-dark);
+  --hover-color: var(--ecz-on-green);
+  box-shadow: var(--ecz-shadow-sm);
+}
+
+.btn--style-secondary {
+  box-shadow: var(--ecz-shadow-sm);
+}
+
+.btn {
+  border-radius: var(--style-radius-m);
+  font-weight: 500;
+}
+
+/* ---------- Links ---------- */
+
+.template-default a:not([class]),
+.rich-text a {
+  color: var(--ecz-link);
+}
+
+/* ---------- Sidebar ---------- */
+
+.nav {
+  background: var(--ecz-surface-muted);
+  border-color: var(--ecz-border);
+}
+
+.nav__link {
+  padding: 6px 10px;
+  margin-inline-start: -10px;
+  border-radius: var(--style-radius-s);
+  color: var(--ecz-text);
+}
+
+.nav__link:hover,
+.nav a.nav__link:focus-visible {
+  text-decoration: none;
+  background: var(--ecz-surface);
+}
+
+.nav__link.active {
+  padding-left: 10px;
+  background: var(--ecz-surface);
+  color: var(--ecz-green-dark);
+  box-shadow: var(--ecz-shadow-md);
+}
+
+.nav__link-indicator {
+  display: none;
+}
+
+.nav-group__toggle {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ecz-text-muted);
+}
+
+/* Brand block at the top of the sidebar */
+.ecz-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 4px 0 16px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--ecz-border);
+
+  &__mark {
+    width: 28px;
+    height: auto;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  &__name {
+    font-weight: 600;
+    color: var(--ecz-heading);
+  }
+
+  &__sub {
+    font-size: 12px;
+    color: var(--ecz-text-muted);
+  }
+}
+
+/* ---------- Header / logos ---------- */
+
+.app-header {
+  border-bottom: 1px solid var(--ecz-border);
+}
+
+.ecz-icon {
+  width: 20px;
+  height: auto;
+}
+
+.ecz-logo {
+  width: 220px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- List view tables ---------- */
+
+.table {
+  border: 1px solid var(--ecz-border);
+  border-radius: var(--style-radius-l);
+  background: var(--ecz-surface);
+  box-shadow: var(--ecz-shadow-sm);
+}
+
+.table thead th {
+  background: var(--ecz-surface-muted);
+  color: var(--ecz-text-muted);
+  font-weight: 500;
+}
+
+.table tbody tr td {
+  border-top: 1px solid var(--ecz-border);
+}
+
+/* ---------- Forms ---------- */
+
+.field-type input,
+.field-type textarea,
+.react-select .rs__control {
+  border-radius: var(--style-radius-s);
+  border-color: var(--ecz-border);
+}
+
+.field-type input:focus,
+.field-type textarea:focus {
+  border-color: var(--ecz-green);
+  box-shadow: 0 0 0 3px var(--ecz-green-tint);
+}
+
+.tabs-field__tab-button--active {
+  color: var(--ecz-green-dark);
+}

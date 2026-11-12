@@ -1,0 +1,117 @@
+/*
+ * Ecozynth demo stylesheet.
+ * Only scans demo code, so it stays independent of the template storefront.
+ */
+@import 'tailwindcss' source(none);
+@source '../../components/ecozynth';
+@source '../../demo';
+@source '.';
+
+/* ------------------------------------------------------------------
+ * Colour palette: the ONLY place colour values are defined.
+ * Changing a value here restyles the whole demo.
+ * ------------------------------------------------------------------ */
+:root {
+  /* Brand (from the logo) */
+  --brand-green: #7ac143;
+  --brand-green-dark: #2f7a32; /* darkened from #3E8E3E so white button text passes WCAG AA (5.3:1) */
+  --brand-green-light: #eef7e6;
+  --brand-slate: #5f6773;
+  --brand-slate-dark: #3f4650;
+
+  /* Division accents (small touches only) */
+  --aqua: #0ea5b7;
+  --aqua-50: #e6f6f8;
+  --solar: #f5a623;
+  --solar-50: #fef5e7;
+
+  /* Neutrals */
+  --ink: #18181b;
+  --muted: #71717a;
+  --line: #e4e4e7;
+  --surface: #ffffff;
+  --surface-alt: #f7f9f6;
+  --surface-hover: #f4f4f5;
+
+  /* Status */
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --danger: #dc2626;
+  --info: #2563eb;
+
+  /* Overlay behind drawers and modals (ink at 50%) */
+  --overlay: rgb(24 24 27 / 0.5);
+}
+
+@theme inline {
+  /* Disable Tailwind's default palette: only brand tokens are available. */
+  --color-*: initial;
+
+  --color-brand-green: var(--brand-green);
+  --color-brand-green-dark: var(--brand-green-dark);
+  --color-brand-green-light: var(--brand-green-light);
+  --color-brand-slate: var(--brand-slate);
+  --color-brand-slate-dark: var(--brand-slate-dark);
+
+  --color-aqua: var(--aqua);
+  --color-aqua-50: var(--aqua-50);
+  --color-solar: var(--solar);
+  --color-solar-50: var(--solar-50);
+
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-surface-hover: var(--surface-hover);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+
+  --color-overlay: var(--overlay);
+
+  /* Fonts (next/font variables are set on <html> in the demo layout) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+
+  /* Radius: 8px default, 12px cards */
+  --radius-ui: 8px;
+  --radius-card: 12px;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface font-sans text-ink antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading text-ink;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brand-green-dark);
+    outline-offset: 2px;
+  }
+
+  /* Anchored headings should not hide under the sticky header */
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

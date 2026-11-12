@@ -1,0 +1,65 @@
+import type { IconName } from '@/demo/data/types'
+import {
+  BadgeCheck,
+  BatteryCharging,
+  Building2,
+  Cable,
+  Cylinder,
+  Droplet,
+  Droplets,
+  Factory,
+  FileText,
+  FlaskConical,
+  Headset,
+  House,
+  Image as ImageIcon,
+  Package,
+  CirclePlay,
+  Plug,
+  ShieldCheck,
+  ShowerHead,
+  SolarPanel,
+  Sun,
+  Truck,
+  User,
+  WashingMachine,
+  Wrench,
+  Zap,
+  type LucideIcon,
+  type LucideProps,
+} from 'lucide-react'
+
+/** Maps data icon keys to lucide icons. */
+export const iconMap: Record<IconName, LucideIcon> = {
+  softener: Droplets,
+  tank: Cylinder,
+  shower: ShowerHead,
+  tap: Droplet,
+  appliance: WashingMachine,
+  cartridge: Package,
+  tester: FlaskConical,
+  accessory: Wrench,
+  'home-solar': House,
+  battery: BatteryCharging,
+  factory: Factory,
+  inverter: Zap,
+  panel: SolarPanel,
+  cable: Cable,
+  droplet: Droplet,
+  sun: Sun,
+  shield: ShieldCheck,
+  truck: Truck,
+  badge: BadgeCheck,
+  headset: Headset,
+  wrench: Wrench,
+  video: CirclePlay,
+  file: FileText,
+  image: ImageIcon,
+  user: User,
+  building: Building2,
+}
+
+export const Icon = ({ name, ...props }: { name: IconName } & LucideProps) => {
+  const Component = iconMap[name] ?? Plug
+  return <Component aria-hidden {...props} />
+}

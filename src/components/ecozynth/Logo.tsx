@@ -22,9 +22,11 @@ type LogoProps = {
   /** Set false to render without the link (e.g. inside another link). */
   link?: boolean
   priority?: boolean
+  /** e.g. close the mobile menu when the logo is tapped */
+  onClick?: () => void
 }
 
-export const Logo = ({ size = 'md', className, link = true, priority = false }: LogoProps) => {
+export const Logo = ({ size = 'md', className, link = true, priority = false, onClick }: LogoProps) => {
   const image = (
     <Image
       alt="Ecozynth"
@@ -39,7 +41,7 @@ export const Logo = ({ size = 'md', className, link = true, priority = false }: 
   if (!link) return <span className={cn('inline-flex', className)}>{image}</span>
 
   return (
-    <Link aria-label="Ecozynth home" className={cn('inline-flex shrink-0', className)} href="/">
+    <Link aria-label="Ecozynth home" className={cn('inline-flex shrink-0', className)} href="/" onClick={onClick}>
       {image}
     </Link>
   )

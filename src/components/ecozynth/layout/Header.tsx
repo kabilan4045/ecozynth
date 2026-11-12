@@ -10,11 +10,9 @@ import { useAuth } from '@/demo/state/auth'
 import { useCartTotals } from '@/demo/state/cart'
 
 import { Logo } from '../Logo'
-import { Accordion } from '../ui/Accordion'
-import { ButtonLink } from '../ui/Button'
 import { cn } from '../ui/cn'
 import { Container } from '../ui/layout'
-import { Drawer } from '../ui/Overlay'
+import { MobileMenu } from './MobileMenu'
 import { SearchBox } from './SearchBox'
 
 /**
@@ -117,89 +115,23 @@ const DesktopNav = () => {
 }
 
 /* ------------------------------------------------------------------ */
-/* Mobile drawer                                                       */
+/* Mobile menu trigger (full-screen menu lives in MobileMenu.tsx)      */
 /* ------------------------------------------------------------------ */
 
 const MobileNav = () => {
   const [open, setOpen] = usePathScopedState<'open'>()
-  const close = () => setOpen(null)
-
-  const linkClass =
-    'flex min-h-11 items-center rounded-[var(--radius-ui)] px-3 font-medium hover:bg-surface-hover'
-
   return (
     <>
       <button
         aria-expanded={open === 'open'}
         aria-label="Open menu"
-        className="inline-flex size-11 items-center justify-center rounded-[var(--radius-ui)] hover:bg-surface-hover lg:hidden"
+        className="-ml-2 inline-flex size-11 items-center justify-center rounded-[var(--radius-ui)] hover:bg-surface-hover lg:hidden"
         onClick={() => setOpen('open')}
         type="button"
       >
         <Menu aria-hidden className="size-6" />
       </button>
-      <Drawer
-        hideTitle
-        onOpenChange={(next) => setOpen(next ? 'open' : null)}
-        open={open === 'open'}
-        side="left"
-        title="Menu"
-      >
-        <div className="-mt-2 mb-4">
-          <Logo size="sm" />
-        </div>
-        <div className="mb-4 grid grid-cols-2 gap-2">
-          <ButtonLink href="/aqua" onClick={close} size="lg">
-            Shop Aqua
-          </ButtonLink>
-          <ButtonLink href="/solar" onClick={close} size="lg" variant="secondary">
-            Shop Solar
-          </ButtonLink>
-        </div>
-        <nav aria-label="Mobile">
-          <Link className={linkClass} href="/" onClick={close}>
-            Home
-          </Link>
-          <Accordion
-            className="my-2"
-            items={headerNav
-              .filter((item) => item.children)
-              .map((item) => ({
-                id: item.label,
-                title: item.label,
-                content: (
-                  <ul className="-mx-1">
-                    {item.children?.map((child) => (
-                      <li key={child.href + child.label}>
-                        <Link
-                          className="flex min-h-11 items-center px-1 text-ink hover:underline"
-                          href={child.href}
-                          onClick={close}
-                        >
-                          {child.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                ),
-              }))}
-          />
-          {headerNav
-            .filter((item) => !item.children && item.href !== '/')
-            .map((item) => (
-              <Link className={linkClass} href={item.href} key={item.href} onClick={close}>
-                {item.label}
-              </Link>
-            ))}
-          <hr className="my-2 border-line" />
-          <Link className={linkClass} href="/account" onClick={close}>
-            My account
-          </Link>
-          <Link className={linkClass} href="/track-order" onClick={close}>
-            Track order
-          </Link>
-        </nav>
-      </Drawer>
+      <MobileMenu onOpenChange={(next) => setOpen(next ? 'open' : null)} open={open === 'open'} />
     </>
   )
 }
